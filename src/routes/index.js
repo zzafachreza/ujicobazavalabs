@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {
   Splash,
   Home,
+  ZavalabsAlarm,
 } from '../pages';
 import { colors } from '../utils';
 import { Icon } from 'react-native-elements';
@@ -23,6 +24,13 @@ export default function Router() {
       <Stack.Screen
         name="Home"
         component={Home}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ZavalabsAlarm"
+        component={ZavalabsAlarm}
         options={{
           headerShown: false,
         }}
