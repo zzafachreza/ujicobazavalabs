@@ -1,3 +1,19 @@
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { apiURL } from '../localStorage';
+
+// const [zavalabs, setZavalabs] = useState({});
+let warna = {};
+
+
+axios.post(apiURL + 'company').then(r => {
+  console.log('test warna', r.data.data);
+  warna = r.data.data;
+});
+
+console.log('nyew masuk', warna)
+
+
 export const colors = {
   primary: '#1A3A59',
   secondary: '#E43C1C',

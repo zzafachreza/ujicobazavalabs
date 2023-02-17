@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { apiURL } from '../../utils/localStorage';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { fonts, windowWidth, } from '../../utils/fonts';
 import { Icon } from 'react-native-elements';
 import { colors } from '../../utils';
+
 
 export default function MyButton({
   title,
@@ -16,11 +19,31 @@ export default function MyButton({
   borderSize = 0,
   borderColor = 'red',
 }) {
+
+
+  const [zavalabs, setZavalabs] = useState({});
+
+  useEffect(() => {
+
+    axios.post(apiURL + 'company').then(r => {
+      setZavalabs(r.data.data);
+    });
+  }, [])
+
   return (
     <TouchableOpacity
-      style={styles(warna, radius, borderSize, borderColor).btn}
+      style={{
+        height: 50,
+        borderRadius: radius,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: zavalabs.warna_utama,
+        borderWidth: borderSize,
+        borderColor: borderColor,
+        flexDirection: 'row',
+      }}
       onPress={onPress}>
-      <Icon type="ionicon" name={Icons} color={iconColor} size={windowWidth / 35} />
+      <Icon type="ionicon" name={Icons} color={zavalabs.warna_utama} size={windowWidth / 35} />
       <Text
         style={{
           color: colors.white,
@@ -43,7 +66,7 @@ const styles = (warna, radius, borderSize, borderColor) =>
       borderRadius: radius,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: warna,
+      backgroundColor: zavalabs.warna_utama,
       borderWidth: borderSize,
       borderColor: borderColor,
       flexDirection: 'row',

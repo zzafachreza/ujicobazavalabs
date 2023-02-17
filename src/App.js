@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Router from './routes';
 import { LogBox, StatusBar } from 'react-native';
@@ -7,8 +7,8 @@ import FlashMessage from 'react-native-flash-message';
 import { colors } from './utils/colors';
 
 import PushNotification from 'react-native-push-notification';
-import { storeData } from './utils/localStorage';
-
+import { apiURL, storeData } from './utils/localStorage';
+import axios from 'axios';
 export default function App() {
   LogBox.ignoreAllLogs();
 
@@ -72,9 +72,20 @@ export default function App() {
     requestPermissions: true,
   });
 
+  const [zavalabs, setZavalabs] = useState({});
+
+  useEffect(() => {
+
+    axios.post(apiURL + 'company').then(r => {
+      setZavalabs(r.data.data);
+    });
+
+
+
+  }, []);
+
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <Router />
       <FlashMessage position="bottom" />
     </NavigationContainer>

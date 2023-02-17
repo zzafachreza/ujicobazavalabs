@@ -5,6 +5,8 @@ import {
   Splash,
   Home,
   ZavalabsAlarm,
+  Login,
+  Register,
 } from '../pages';
 import { colors } from '../utils';
 import { Icon } from 'react-native-elements';
@@ -24,6 +26,20 @@ export default function Router() {
       <Stack.Screen
         name="Home"
         component={Home}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
         options={{
           headerShown: false,
         }}

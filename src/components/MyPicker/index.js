@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { apiURL } from '../../utils/localStorage';
 import { StyleSheet, Text, View, Picker } from 'react-native';
 import { Icon, ListItem, Button } from 'react-native-elements';
 import { colors } from '../../utils/colors';
@@ -19,6 +21,16 @@ export default function MyPicker({
   colorIcon = colors.primary,
   data = [],
 }) {
+
+  const [zavalabs, setZavalabs] = useState({});
+
+  useEffect(() => {
+
+    axios.post(apiURL + 'company').then(r => {
+      setZavalabs(r.data.data);
+    });
+  }, [])
+
   return (
     <>
       <View
@@ -27,11 +39,11 @@ export default function MyPicker({
           alignItems: 'center',
           paddingVertical: 0,
         }}>
-        <Icon type="ionicon" name={iconname} color={colors.primary} size={16} />
+        <Icon type="ionicon" name={iconname} color={zavalabs.warna_utama} size={16} />
         <Text
           style={{
             fontFamily: fonts.secondary[600],
-            color: colors.primary,
+            color: zavalabs.warna_utama,
             left: 10,
             fontSize: 12,
             ...styleLabel,

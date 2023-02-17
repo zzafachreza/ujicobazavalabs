@@ -20,8 +20,8 @@ export const getData = async key => {
 };
 
 
-export const apiURL = 'https://rutankelas2aambon.okeadmin.com/api/';
-export const MYAPP = 'Rutan Ambon';
+export const apiURL = 'https://zavalabs.okeadmin.com/api/';
+export const MYAPP = 'Zavalabs';
 export const api_token = 'd4e729bcd8aab6f0a710e8ca3d31524cb5783dd1d63ddbf32fbed278c435605f';
-export const wenURL = apiURL.replace("api/", "");
+export const webURL = apiURL.replace("api/", "");
 
